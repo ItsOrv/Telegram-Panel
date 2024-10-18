@@ -11,13 +11,19 @@ class AccountManager:
         accounts_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'accounts.json')
         if os.path.exists(accounts_path):
             with open(accounts_path, 'r') as f:
-                return json.load(f)
+                try:
+                    data = json.load(f)
+                    # اگر داده‌ها وجود نداشته باشند یا خالی باشند، دیکشنری خالی برمی‌گرداند
+                    return data.get("accounts", {}) if isinstance(data, dict) else {}
+                except json.JSONDecodeError:
+                    # اگر فایل JSON به درستی فرمت نشده باشد، دیکشنری خالی برمی‌گرداند
+                    return {}
         return {}
 
     def save_accounts(self):
         accounts_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'accounts.json')
         with open(accounts_path, 'w') as f:
-            json.dump(self.accounts, f)
+            json.dump({"accounts": self.accounts}, f, indent=4)
 
     async def add_account(self, phone_number, api_id, api_hash):
         client = TelegramClient(StringSession(), api_id, api_hash)

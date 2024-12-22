@@ -6,18 +6,16 @@ import logging
 import asyncio
 import json
 import os
+from src.config import API_ID, API_HASH
+from src.bot import Bot
 
 class SignIn:
     def __init__(self, client_manager):
-        """
-        کلاس SignIn برای مدیریت فرآیند ورود به حساب تلگرام و افزودن حساب به بات.
-        
-        :param client_manager: شیء ClientManager برای مدیریت حساب‌ها
-        """
         self.client_manager = client_manager
-        self.bot = client_manager.bot
+        self.bot = Bot  # مقداردهی صحیح bot
         self._conversations = {}
         self.logger = logging.getLogger(__name__)
+
 
     async def add_account(self, event):
         """شروع فرآیند افزودن حساب با درخواست شماره تلفن."""
@@ -121,3 +119,4 @@ class SignIn:
         if chat_id in self._conversations:
             del self._conversations[chat_id]
         self.logger.info("Temporary handlers and data cleared.")
+

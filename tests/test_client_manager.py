@@ -1,7 +1,10 @@
 # tests/test_client_manager.py
-
 import unittest
 from src.client_manager.client_manager import ClientManager
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class TestClientManager(unittest.TestCase):
     def setUp(self):

@@ -1,6 +1,9 @@
 # src/keyboards/keyboard.py
-
 from telethon import Button
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 def main_menu_keyboard():
     """

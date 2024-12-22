@@ -8,6 +8,7 @@ __pycache__/
 *.pyo
 .vscode/
 venv
+env
 krtkmahan.session
 krtkmahan2.session
 bot2.session

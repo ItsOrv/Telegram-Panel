@@ -61,6 +61,7 @@ API_ID=your_api_id
 API_HASH=your_api_hash
 BOT_TOKEN=your_bot_token
 CHANNEL_ID=your_channel_id
+ADMIN_ID=admin_chat_id
 ```
 
 - **API_ID** and **API_HASH**: Obtain these from [my.telegram.org](https://my.telegram.org).

@@ -1,10 +1,12 @@
 from telethon import events
-from handlers.account_handler import AccountHandler
-from handlers.keyword_handler import KeywordHandler
-from handlers.stats_handler import StatsHandler
+from src.client_manager.sign_in import SignIn
+from src.handlers.vars_handler import VarsHandler
+
+from src.handlers.stats_handler import StatsHandler
 import logging
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class CallbackHandler:
     def __init__(self, bot):
@@ -53,7 +55,7 @@ class CallbackHandler:
     async def handle_add_account(self, event):
         """Handle adding a new account."""
         logger.info("Adding account via callback_handler")
-        await AccountHandler(self.bot).add_account(event)
+        await SignIn(self.bot).add_account(event)
 
     async def handle_request_phone_number(self, event):
         """Request user's phone number."""
@@ -64,32 +66,32 @@ class CallbackHandler:
     async def handle_show_accounts(self, event):
         """Show list of accounts."""
         logger.info("Showing accounts list")
-        await AccountHandler(self.bot).show_accounts(event)
+        await SignIn(self.bot).show_accounts(event)
 
     async def handle_update_groups(self, event):
         """Update groups list."""
         logger.info("Updating groups")
-        await AccountHandler(self.bot).update_groups(event)
+        await SignIn(self.bot).update_groups(event)
 
     async def handle_add_keyword(self, event):
         """Add a new keyword."""
         logger.info("Adding keyword")
-        await KeywordHandler(self.bot).add_keyword_handler(event)
+        await VarsHandler(self.bot).add_keyword_handler(event)
 
     async def handle_remove_keyword(self, event):
         """Remove a keyword."""
         logger.info("Removing keyword")
-        await KeywordHandler(self.bot).remove_keyword_handler(event)
+        await VarsHandler(self.bot).remove_keyword_handler(event)
 
     async def handle_ignore_user(self, event):
         """Ignore a specific user."""
         logger.info("Ignoring user")
-        await KeywordHandler(self.bot).ignore_user_handler(event)
+        await VarsHandler(self.bot).ignore_user_handler(event)
 
     async def handle_remove_ignore_user(self, event):
         """Remove ignored user."""
         logger.info("Removing ignored user")
-        await KeywordHandler(self.bot).delete_ignore_user_handler(event)
+        await VarsHandler(self.bot).delete_ignore_user_handler(event)
 
     async def handle_show_stats(self, event):
         """Show statistics."""
@@ -102,16 +104,16 @@ class CallbackHandler:
         """Ignore a specific user based on callback data."""
         logger.info("Ignoring specific user in callback")
         user_id = int(data.split('_')[1])
-        await KeywordHandler(self.bot).ignore_user(user_id, event)
+        await VarsHandler(self.bot).ignore_user(user_id, event)
 
     async def handle_toggle_client(self, data, event):
         """Toggle client activation status based on session ID."""
         logger.info("Toggling client status")
         session = data.replace('toggle_', '')
-        await AccountHandler(self.bot).toggle_client(session, event)
+        await SignIn(self.bot).toggle_client(session, event)
 
     async def handle_delete_client(self, data, event):
         """Delete a client based on session ID."""
         logger.info("Deleting client")
         session = data.replace('delete_', '')
-        await AccountHandler(self.bot).delete_client(session, event)
+        await SignIn(self.bot).delete_client(session, event)

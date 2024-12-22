@@ -1,4 +1,10 @@
-# src/monitor/monitor.py
+from telethon import Button, events, functions
+from src.utils.logger import logger
+from src.config import CHANNEL_ID
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class Monitor:
     def __init__(self, keywords):
@@ -55,6 +61,7 @@ class Monitor:
 
                 buttons = [
                     [Button.url("View Message", url=message_link)],
+                    [Button.inline(" Ignore ", data=f"ignore_{sender.id}")]
                     [Button.inline("🚫Ignore🚫", data=f"ignore_{sender.id}")]
                 ]
 

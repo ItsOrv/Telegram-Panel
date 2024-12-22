@@ -1,7 +1,10 @@
 # tests/test_monitor.py
-
 import unittest
 from src.monitor.monitor import Monitor
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class TestMonitor(unittest.TestCase):
     def setUp(self):

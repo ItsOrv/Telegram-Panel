@@ -2,12 +2,20 @@ import os
 import asyncio
 import logging
 from telethon import TelegramClient
-from src.utils.config import ConfigManager
+from src.config import ConfigManager
 
 logger = logging.getLogger(__name__)
 
 class ClientManager:
     def __init__(self, config, active_clients, api_id, api_hash):
+        """
+        Initialize the ClientManager with configurations and active clients.
+
+        :param config: Configuration dictionary.
+        :param active_clients: Dictionary to store active Telegram clients.
+        :param api_id: Telegram API ID.
+        :param api_hash: Telegram API Hash.
+        """
         self.config = config
         self.active_clients = active_clients
         self.api_id = api_id
@@ -15,12 +23,14 @@ class ClientManager:
         self.config_manager = ConfigManager("clients.json", self.config)
 
     async def detect_sessions(self):
-        """Detects new session files and adds them to the config if not already present."""
-        sessions = [f for f in os.listdir('.') if f.endswith('.session') and f != 'bot2.session']
-        
+        """
+        Detects new session files in the current directory and adds them to the configuration if not already present.
+        """
+        sessions = [f for f in os.listdir('.') if f.endswith('.session') and f != 'bot_session.session']
+
         # Find sessions that are not already in config
         new_sessions = [s for s in sessions if s not in self.config.get('clients', [])]
-        
+
         if new_sessions:
             self.config.setdefault('clients', []).extend(new_sessions)
             self.config_manager.save_config(self.config)
@@ -29,28 +39,32 @@ class ClientManager:
             logger.info("No new sessions detected.")
 
     async def start_saved_clients(self):
-        """Starts all clients listed in the configuration file."""
+        """
+        Starts all Telegram clients listed in the configuration file.
+        """
         await self.detect_sessions()
 
         for session_name in self.config.get('clients', []):
             try:
                 client = TelegramClient(session_name, self.api_id, self.api_hash)
                 await client.start()
-                
+
                 if await client.is_user_authorized():
                     self.active_clients[session_name] = client
                     logger.info(f"Started client: {session_name}")
                 else:
                     logger.warning(f"Client {session_name} is not authorized. Disconnecting.")
                     await client.disconnect()
-                
+
                 await asyncio.sleep(1)  # Introduce a delay for natural behavior
 
             except Exception as e:
                 logger.error(f"Failed to start client {session_name}: {e}")
 
     async def disconnect_all_clients(self):
-        """Disconnects all active clients and clears them from the active clients list."""
+        """
+        Disconnects all active Telegram clients and clears the active clients list.
+        """
         for session_name, client in self.active_clients.items():
             try:
                 await client.disconnect()
@@ -62,11 +76,10 @@ class ClientManager:
 
     async def toggle_client(self, session: str, event):
         """
-        Toggles the active/inactive status of a client account.
-        
-        Args:
-            session (str): Session identifier for the account
-            event: Telegram event triggering the toggle
+        Toggles the active/inactive status of a Telegram client.
+
+        :param session: Session identifier for the account.
+        :param event: Telegram event triggering the toggle.
         """
         try:
             if session not in self.config.get('clients', []):
@@ -103,11 +116,10 @@ class ClientManager:
 
     async def delete_client(self, session: str, event):
         """
-        Permanently deletes a client account and its associated data.
-        
-        Args:
-            session (str): Session identifier for the account to delete
-            event: Telegram event triggering the deletion
+        Permanently deletes a Telegram client and its associated data.
+
+        :param session: Session identifier for the account to delete.
+        :param event: Telegram event triggering the deletion.
         """
         try:
             # Disconnect and remove active client if exists
@@ -122,7 +134,7 @@ class ClientManager:
                 self.config_manager.save_config()
 
                 # Delete the session file from disk
-                session_file = f"{session}"
+                session_file = session
                 if os.path.exists(session_file):
                     os.remove(session_file)
                     logger.info(f"Deleted session file for client: {session}")

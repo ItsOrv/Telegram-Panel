@@ -7,6 +7,7 @@ from telethon.errors import FloodWaitError
 from telethon.tl.types import Chat, Channel
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class StatsHandler:
     def __init__(self, bot):

@@ -2,6 +2,7 @@ from telethon import events
 import logging
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class VarsHandler:
     def __init__(self, bot):
@@ -129,3 +130,53 @@ class VarsHandler:
         except Exception as e:
             logger.error(f"Error ignoring user: {e}")
             await event.respond("Error ignoring user. Please try again.")
+
+    async def add_varshandler(self, event):
+        """Add a variable to the handler."""
+        logger.info("Executing add_varshandler in VarsHandler")
+        try:
+            if isinstance(event, events.CallbackQuery.Event):
+                await event.respond("Please enter the variable you want to add.")
+                self.bot._conversations[event.chat_id] = 'add_varshandler'
+                return
+
+            variable = event.message.text.strip()
+            # Assuming there's a config list for variables
+            if variable not in self.bot.config['VARIABLES']:
+                self.bot.config['VARIABLES'].append(variable)
+                self.bot.config_manager.save_config(self.bot.config)
+                await event.respond(f"Variable '{variable}' added successfully")
+            else:
+                await event.respond(f"Variable '{variable}' already exists")
+
+            variables = ', '.join(self.bot.config['VARIABLES'])
+            await event.respond(f"📝 Current variables: {variables}")
+
+        except Exception as e:
+            logger.error(f"Error adding variable: {e}")
+            await event.respond("Error adding variable. Please try again.")
+
+    async def remove_varshandler(self, event):
+        """Remove a variable from the handler."""
+        logger.info("Executing remove_varshandler in VarsHandler")
+        try:
+            if isinstance(event, events.CallbackQuery.Event):
+                await event.respond("Please enter the variable you want to remove.")
+                self.bot._conversations[event.chat_id] = 'remove_varshandler'
+                return
+
+            variable = event.message.text.strip()
+            if variable in self.bot.config['VARIABLES']:
+                self.bot.config['VARIABLES'].remove(variable)
+                self.bot.config_manager.save_config(self.bot.config)
+                await event.respond(f"Variable '{variable}' removed successfully")
+            else:
+                await event.respond(f"Variable '{variable}' not found")
+
+            variables = ', '.join(self.bot.config['VARIABLES'])
+            await event.respond(f"📝 Current variables: {variables}")
+
+        except Exception as e:
+            logger.error(f"Error removing variable: {e}")
+            await event.respond("Error removing variable. Please try again.")
+

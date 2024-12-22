@@ -1,17 +1,17 @@
 # src/handlers/command_handler.py
 
 import logging
-from keyboards.keyboard import main_menu_keyboard
+from src.utils.keyboard import main_menu_keyboard
 from telethon import events
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class CommandHandler:
     def __init__(self, bot):
         """
         Initializes the CommandHandler with the bot instance and registers commands.
-        
-        :param bot: The bot instance to handle Telegram events and messages
+        param bot: The bot instance to handle Telegram events and messages
         """
         self.bot = bot
         self.commands = {}

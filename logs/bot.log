@@ -429,3 +429,99 @@ AttributeError: 'MessageHandler' object has no attribute 'tbot'. Did you mean: '
 2025-01-09 06:22:55,033 [INFO] All clients disconnected successfully.
 2025-01-09 06:22:55,034 [INFO] Not disconnecting (already have no connection)
 2025-01-09 06:22:55,037 [INFO] Bot shut down successfully
+2025-01-09 06:52:23,952 [INFO] Config file loaded successfully.
+2025-01-09 06:52:23,952 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:52:23,953 [INFO] Config file loaded successfully.
+2025-01-09 06:52:23,954 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:52:23,954 [INFO] ClientManager initialized successfully.
+2025-01-09 06:52:23,954 [INFO] Bot initialized successfully
+2025-01-09 06:52:23,954 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:52:23,955 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:52:25,419 [INFO] Handlers initialized successfully
+2025-01-09 06:52:25,420 [INFO] No new sessions detected.
+2025-01-09 06:52:25,420 [INFO] Bot started successfully
+2025-01-09 06:52:25,420 [INFO] Bot is running...
+2025-01-09 06:52:31,852 [INFO] start command in CommandHandler
+2025-01-09 06:52:32,035 [INFO] message_handler in MessageHandler
+2025-01-09 06:52:36,826 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:52:41,864 [INFO] start command in CommandHandler
+2025-01-09 06:52:42,051 [INFO] message_handler in MessageHandler
+2025-01-09 06:52:43,872 [INFO] start command in CommandHandler
+2025-01-09 06:52:44,114 [INFO] message_handler in MessageHandler
+2025-01-09 06:58:19,641 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:58:19,642 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:58:19,645 [WARNING] Bot run was cancelled
+2025-01-09 06:58:19,646 [INFO] Shutting down bot...
+2025-01-09 06:58:19,646 [INFO] All clients disconnected successfully.
+2025-01-09 06:58:19,646 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:58:19,649 [INFO] Bot shut down successfully
+2025-01-09 06:58:35,499 [INFO] Config file loaded successfully.
+2025-01-09 06:58:35,499 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:58:35,500 [INFO] Config file loaded successfully.
+2025-01-09 06:58:35,501 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:58:35,501 [INFO] ClientManager initialized successfully.
+2025-01-09 06:58:35,501 [INFO] Bot initialized successfully
+2025-01-09 06:58:35,501 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:58:35,502 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:58:36,884 [INFO] Handlers initialized successfully
+2025-01-09 06:58:36,885 [INFO] No new sessions detected.
+2025-01-09 06:58:36,885 [INFO] Bot started successfully
+2025-01-09 06:58:36,885 [INFO] Bot is running...
+2025-01-09 06:58:44,018 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:58:44,018 [INFO] show_stats in callback_handler
+2025-01-09 06:58:44,018 [INFO] show_stats in StatsHandler
+2025-01-09 06:58:47,437 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:58:47,438 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:58:47,441 [WARNING] Bot run was cancelled
+2025-01-09 06:58:47,441 [INFO] Shutting down bot...
+2025-01-09 06:58:47,441 [INFO] All clients disconnected successfully.
+2025-01-09 06:58:47,442 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:58:47,445 [INFO] Bot shut down successfully
+2025-01-09 07:05:52,383 [INFO] Config file loaded successfully.
+2025-01-09 07:05:52,383 [INFO] ConfigManager initialized successfully.
+2025-01-09 07:05:52,384 [INFO] Config file loaded successfully.
+2025-01-09 07:05:52,384 [INFO] ConfigManager initialized successfully.
+2025-01-09 07:05:52,385 [INFO] ClientManager initialized successfully.
+2025-01-09 07:05:52,385 [INFO] Bot initialized successfully
+2025-01-09 07:05:52,385 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 07:05:52,386 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 07:05:53,846 [INFO] Handlers initialized successfully
+2025-01-09 07:05:53,846 [INFO] No new sessions detected.
+2025-01-09 07:05:53,846 [INFO] Bot started successfully
+2025-01-09 07:05:53,846 [INFO] Bot is running...
+2025-01-09 07:05:55,723 [INFO] start command in CommandHandler
+2025-01-09 07:05:55,882 [INFO] message_handler in MessageHandler
+2025-01-09 07:05:57,664 [INFO] callback_handler in CallbackHandler
+2025-01-09 07:05:57,665 [INFO] monitor_mode in callback_handler
+2025-01-09 07:05:57,667 [ERROR] Error in callback_handler: 'list' object is not callable
+2025-01-09 07:12:40,250 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 07:12:40,251 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 07:12:40,258 [WARNING] Bot run was cancelled
+2025-01-09 07:12:40,258 [INFO] Shutting down bot...
+2025-01-09 07:12:40,258 [INFO] All clients disconnected successfully.
+2025-01-09 07:12:40,258 [INFO] Not disconnecting (already have no connection)
+2025-01-09 07:12:40,264 [INFO] Bot shut down successfully
+2025-01-09 07:12:43,306 [INFO] Config file loaded successfully.
+2025-01-09 07:12:43,306 [INFO] ConfigManager initialized successfully.
+2025-01-09 07:12:43,307 [INFO] Config file loaded successfully.
+2025-01-09 07:12:43,308 [INFO] ConfigManager initialized successfully.
+2025-01-09 07:12:43,308 [INFO] ClientManager initialized successfully.
+2025-01-09 07:12:43,308 [INFO] Bot initialized successfully
+2025-01-09 07:12:43,308 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 07:12:53,319 [WARNING] Attempt 1 at connecting failed: TimeoutError: 
+2025-01-09 07:12:54,321 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 07:12:56,038 [INFO] Handlers initialized successfully
+2025-01-09 07:12:56,038 [INFO] No new sessions detected.
+2025-01-09 07:12:56,038 [INFO] Bot started successfully
+2025-01-09 07:12:56,039 [INFO] Bot is running...
+2025-01-09 07:12:57,831 [INFO] start command in CommandHandler
+2025-01-09 07:12:57,995 [INFO] message_handler in MessageHandler
+2025-01-09 07:12:59,223 [INFO] callback_handler in CallbackHandler
+2025-01-09 07:12:59,223 [INFO] monitor_mode in callback_handler
+2025-01-09 07:13:32,755 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 07:13:32,756 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 07:13:32,759 [WARNING] Bot run was cancelled
+2025-01-09 07:13:32,760 [INFO] Shutting down bot...
+2025-01-09 07:13:32,760 [INFO] All clients disconnected successfully.
+2025-01-09 07:13:32,760 [INFO] Not disconnecting (already have no connection)
+2025-01-09 07:13:32,763 [INFO] Bot shut down successfully

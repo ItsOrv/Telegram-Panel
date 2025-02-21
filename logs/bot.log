@@ -1,0 +1,369 @@
+2025-01-09 05:27:09,201 [WARNING] Config file 'clients.json' not found or it's empty. Creating a new one with default settings.
+2025-01-09 05:27:09,202 [INFO] Configuration saved successfully.
+2025-01-09 05:27:09,246 [INFO] Config file loaded successfully.
+2025-01-09 05:27:09,247 [INFO] Connecting to 149.154.167.51:443/TcpFull...
+2025-01-09 05:27:11,235 [INFO] Connection to 149.154.167.51:443/TcpFull complete!
+2025-01-09 05:27:12,421 [INFO] Phone migrated to 4
+2025-01-09 05:27:12,421 [INFO] Reconnecting to new data center 4
+2025-01-09 05:27:12,601 [INFO] Disconnecting from 149.154.167.51:443/TcpFull...
+2025-01-09 05:27:12,602 [INFO] Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-01-09 05:27:12,602 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 05:27:15,110 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:27:16,128 [INFO] No new sessions detected.
+2025-01-09 05:27:16,128 [INFO] Bot started successfully
+2025-01-09 05:27:16,128 [INFO] Bot is running...
+2025-01-09 05:27:16,128 [ERROR] Error running bot: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 05:27:16,129 [CRITICAL] Critical error in main: 'TelegramBot' object has no attribute 'bot'
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/main.py", line 9, in main
+    asyncio.run(bot.run())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 686, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Telbot.py", line 56, in run
+    await self.bot.disconnect()
+          ^^^^^^^^
+AttributeError: 'TelegramBot' object has no attribute 'bot'. Did you mean: 'tbot'?
+2025-01-09 05:31:26,344 [INFO] Config file loaded successfully.
+2025-01-09 05:31:26,346 [INFO] Config file loaded successfully.
+2025-01-09 05:31:26,346 [INFO] Bot initialized successfully
+2025-01-09 05:31:26,346 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 05:31:26,347 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:31:27,573 [INFO] Handlers initialized successfully
+2025-01-09 05:31:27,574 [INFO] No new sessions detected.
+2025-01-09 05:31:27,574 [INFO] Bot started successfully
+2025-01-09 05:31:27,574 [INFO] Bot is running...
+2025-01-09 05:31:41,475 [INFO] start command in CommandHandler
+2025-01-09 05:31:41,671 [INFO] message_handler in MessageHandler
+2025-01-09 05:31:51,614 [INFO] callback_handler in CallbackHandler
+2025-01-09 05:31:51,614 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 05:31:51,615 [INFO] add_account in AccountHandler
+2025-01-09 05:31:51,615 [ERROR] Error in add_account: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 05:31:51,615 [ERROR] Error in callback_handler: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 05:31:54,902 [INFO] callback_handler in CallbackHandler
+2025-01-09 05:31:54,902 [INFO] show_accounts in callback_handler in CallbackHandler
+2025-01-09 05:31:54,902 [INFO] show_accounts in AccountHandler
+2025-01-09 05:31:56,406 [INFO] callback_handler in CallbackHandler
+2025-01-09 05:31:56,406 [INFO] update_groups in callback_handler in CallbackHandler
+2025-01-09 05:31:56,406 [INFO] update_groups in AccountHandler
+2025-01-09 05:31:56,406 [INFO] No new sessions detected.
+2025-01-09 05:31:56,586 [INFO] Saved data for 0 clients
+2025-01-09 05:31:56,586 [ERROR] Error in update_groups: cannot access local variable 'group_ids' where it is not associated with a value
+2025-01-09 05:31:59,023 [INFO] callback_handler in CallbackHandler
+2025-01-09 05:31:59,023 [INFO] remove_keyword in callback_handler in CallbackHandler
+2025-01-09 05:31:59,023 [INFO] remove_keyword_handler in KeywordHandler
+2025-01-09 05:32:02,657 [INFO] message_handler in MessageHandler
+2025-01-09 05:32:02,657 [INFO] remove_keyword_handler in KeywordHandler
+2025-01-09 05:35:15,644 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 05:35:15,645 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:35:15,669 [WARNING] Bot run was cancelled
+2025-01-09 05:35:15,669 [INFO] Shutting down bot...
+2025-01-09 05:35:15,669 [INFO] Not disconnecting (already have no connection)
+2025-01-09 05:35:15,672 [INFO] Bot shut down successfully
+2025-01-09 05:45:42,313 [INFO] Config file loaded successfully.
+2025-01-09 05:45:42,313 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:45:42,315 [INFO] Config file loaded successfully.
+2025-01-09 05:45:42,315 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:45:42,315 [INFO] ClientManager initialized successfully.
+2025-01-09 05:45:42,315 [INFO] Bot initialized successfully
+2025-01-09 05:45:42,315 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 05:45:42,316 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:45:43,473 [INFO] Handlers initialized successfully
+2025-01-09 05:45:43,474 [INFO] No new sessions detected.
+2025-01-09 05:45:43,474 [INFO] Bot started successfully
+2025-01-09 05:45:43,474 [INFO] Bot is running...
+2025-01-09 05:45:54,038 [INFO] start command in CommandHandler
+2025-01-09 05:45:54,199 [INFO] message_handler in MessageHandler
+2025-01-09 05:45:56,271 [INFO] callback_handler in CallbackHandler
+2025-01-09 05:45:56,271 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 05:45:56,272 [INFO] add_account in AccountHandler
+2025-01-09 05:45:56,272 [ERROR] Error in add_account: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 05:45:56,272 [ERROR] Error in callback_handler: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 05:59:19,013 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 05:59:19,014 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:59:19,017 [WARNING] Bot run was cancelled
+2025-01-09 05:59:19,017 [INFO] Shutting down bot...
+2025-01-09 05:59:19,017 [INFO] All clients disconnected successfully.
+2025-01-09 05:59:19,018 [INFO] Not disconnecting (already have no connection)
+2025-01-09 05:59:19,021 [INFO] Bot shut down successfully
+2025-01-09 05:59:47,841 [INFO] Config file loaded successfully.
+2025-01-09 05:59:47,841 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:59:47,843 [INFO] Config file loaded successfully.
+2025-01-09 05:59:47,843 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:59:47,843 [INFO] ClientManager initialized successfully.
+2025-01-09 05:59:47,843 [INFO] Bot initialized successfully
+2025-01-09 05:59:47,844 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 05:59:47,844 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:59:49,050 [INFO] Handlers initialized successfully
+2025-01-09 05:59:49,050 [INFO] No new sessions detected.
+2025-01-09 05:59:49,050 [INFO] Bot started successfully
+2025-01-09 05:59:49,050 [INFO] Bot is running...
+2025-01-09 05:59:52,265 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 05:59:52,265 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:59:52,290 [WARNING] Bot run was cancelled
+2025-01-09 05:59:52,290 [INFO] Shutting down bot...
+2025-01-09 05:59:52,291 [INFO] All clients disconnected successfully.
+2025-01-09 05:59:52,291 [INFO] Not disconnecting (already have no connection)
+2025-01-09 05:59:52,295 [INFO] Bot shut down successfully
+2025-01-09 05:59:56,007 [INFO] Config file loaded successfully.
+2025-01-09 05:59:56,007 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:59:56,009 [INFO] Config file loaded successfully.
+2025-01-09 05:59:56,009 [INFO] ConfigManager initialized successfully.
+2025-01-09 05:59:56,009 [INFO] ClientManager initialized successfully.
+2025-01-09 05:59:56,009 [INFO] Bot initialized successfully
+2025-01-09 05:59:56,010 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 05:59:56,010 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 05:59:57,235 [INFO] Handlers initialized successfully
+2025-01-09 05:59:57,235 [INFO] No new sessions detected.
+2025-01-09 05:59:57,235 [INFO] Bot started successfully
+2025-01-09 05:59:57,235 [INFO] Bot is running...
+2025-01-09 06:00:04,978 [INFO] start command in CommandHandler
+2025-01-09 06:00:05,147 [INFO] message_handler in MessageHandler
+2025-01-09 06:00:07,308 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:00:07,308 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:00:07,308 [INFO] add_account in AccountHandler
+2025-01-09 06:00:07,308 [ERROR] Error in add_account: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 06:00:07,309 [ERROR] Error in callback_handler: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 06:00:43,818 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:00:43,818 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:00:43,822 [WARNING] Bot run was cancelled
+2025-01-09 06:00:43,822 [INFO] Shutting down bot...
+2025-01-09 06:00:43,822 [INFO] All clients disconnected successfully.
+2025-01-09 06:00:43,822 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:00:43,826 [INFO] Bot shut down successfully
+2025-01-09 06:00:58,215 [INFO] Config file loaded successfully.
+2025-01-09 06:00:58,215 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:00:58,216 [INFO] Config file loaded successfully.
+2025-01-09 06:00:58,217 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:00:58,217 [INFO] ClientManager initialized successfully.
+2025-01-09 06:00:58,217 [INFO] Bot initialized successfully
+2025-01-09 06:00:58,217 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:00:58,218 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:00:59,463 [INFO] Handlers initialized successfully
+2025-01-09 06:00:59,463 [INFO] No new sessions detected.
+2025-01-09 06:00:59,463 [INFO] Bot started successfully
+2025-01-09 06:00:59,463 [INFO] Bot is running...
+2025-01-09 06:01:00,727 [INFO] start command in CommandHandler
+2025-01-09 06:01:00,944 [INFO] message_handler in MessageHandler
+2025-01-09 06:01:02,650 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:01:02,650 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:01:02,650 [INFO] add_account in AccountHandler
+2025-01-09 06:01:02,651 [ERROR] Error in add_account: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 06:01:02,651 [ERROR] Error in callback_handler: 'TelegramBot' object has no attribute 'bot'
+2025-01-09 06:01:10,910 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:01:10,911 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:01:10,916 [WARNING] Bot run was cancelled
+2025-01-09 06:01:10,916 [INFO] Shutting down bot...
+2025-01-09 06:01:10,916 [INFO] All clients disconnected successfully.
+2025-01-09 06:01:10,917 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:01:10,920 [INFO] Bot shut down successfully
+2025-01-09 06:02:34,136 [INFO] Config file loaded successfully.
+2025-01-09 06:02:34,137 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:02:34,138 [INFO] Config file loaded successfully.
+2025-01-09 06:02:34,138 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:02:34,138 [INFO] ClientManager initialized successfully.
+2025-01-09 06:02:34,138 [INFO] Bot initialized successfully
+2025-01-09 06:02:34,139 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:02:34,139 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:02:35,557 [INFO] Handlers initialized successfully
+2025-01-09 06:02:35,557 [INFO] No new sessions detected.
+2025-01-09 06:02:35,557 [INFO] Bot started successfully
+2025-01-09 06:02:35,557 [INFO] Bot is running...
+2025-01-09 06:02:37,332 [INFO] start command in CommandHandler
+2025-01-09 06:02:37,497 [INFO] message_handler in MessageHandler
+2025-01-09 06:02:38,595 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:02:38,595 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:02:38,595 [INFO] add_account in AccountHandler
+2025-01-09 06:02:38,776 [ERROR] Error in add_account: 'AccountHandler' object has no attribute 'bot'
+2025-01-09 06:03:22,733 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:03:22,734 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:03:22,737 [WARNING] Bot run was cancelled
+2025-01-09 06:03:22,737 [INFO] Shutting down bot...
+2025-01-09 06:03:22,738 [INFO] All clients disconnected successfully.
+2025-01-09 06:03:22,738 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:03:22,741 [INFO] Bot shut down successfully
+2025-01-09 06:03:24,813 [INFO] Config file loaded successfully.
+2025-01-09 06:03:24,813 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:03:24,814 [INFO] Config file loaded successfully.
+2025-01-09 06:03:24,815 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:03:24,815 [INFO] ClientManager initialized successfully.
+2025-01-09 06:03:24,815 [INFO] Bot initialized successfully
+2025-01-09 06:03:24,815 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:03:24,816 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:03:26,159 [INFO] Handlers initialized successfully
+2025-01-09 06:03:26,159 [INFO] No new sessions detected.
+2025-01-09 06:03:26,159 [INFO] Bot started successfully
+2025-01-09 06:03:26,159 [INFO] Bot is running...
+2025-01-09 06:03:28,046 [INFO] start command in CommandHandler
+2025-01-09 06:03:28,237 [INFO] message_handler in MessageHandler
+2025-01-09 06:03:29,108 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:03:29,109 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:03:29,109 [INFO] add_account in AccountHandler
+2025-01-09 06:03:31,262 [INFO] start command in CommandHandler
+2025-01-09 06:03:31,561 [INFO] message_handler in MessageHandler
+2025-01-09 06:03:31,561 [INFO] phone_number_handler in AccountHandler
+2025-01-09 06:03:31,562 [ERROR] Error in phone_number_handler: 'AccountHandler' object has no attribute 'bot'
+2025-01-09 06:03:31,562 [ERROR] Unhandled exception on message_handler
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 63, in phone_number_handler
+    client = TelegramClient(phone_number, self.bot.api_id, self.bot.api_hash)
+                                          ^^^^^^^^
+AttributeError: 'AccountHandler' object has no attribute 'bot'. Did you mean: 'tbot'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 751, in message_handler
+    await self.account_handler.phone_number_handler(event)
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 78, in phone_number_handler
+    await self.bot.bot.send_message(chat_id, "Error occurred. Please try again.")
+          ^^^^^^^^
+AttributeError: 'AccountHandler' object has no attribute 'bot'. Did you mean: 'tbot'?
+2025-01-09 06:03:42,669 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:03:42,669 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:03:42,673 [WARNING] Bot run was cancelled
+2025-01-09 06:03:42,673 [INFO] Shutting down bot...
+2025-01-09 06:03:42,673 [INFO] All clients disconnected successfully.
+2025-01-09 06:03:42,674 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:03:42,677 [INFO] Bot shut down successfully
+2025-01-09 06:07:39,127 [INFO] Config file loaded successfully.
+2025-01-09 06:07:39,128 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:07:39,129 [INFO] Config file loaded successfully.
+2025-01-09 06:07:39,129 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:07:39,129 [INFO] ClientManager initialized successfully.
+2025-01-09 06:07:39,129 [INFO] Bot initialized successfully
+2025-01-09 06:07:39,130 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:07:39,131 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:07:40,519 [INFO] Handlers initialized successfully
+2025-01-09 06:07:40,519 [INFO] No new sessions detected.
+2025-01-09 06:07:40,520 [INFO] Bot started successfully
+2025-01-09 06:07:40,520 [INFO] Bot is running...
+2025-01-09 06:07:42,072 [INFO] start command in CommandHandler
+2025-01-09 06:07:42,248 [INFO] message_handler in MessageHandler
+2025-01-09 06:07:42,248 [ERROR] Unhandled exception on message_handler
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 748, in message_handler
+    if event.chat_id in self.tbot._conversations:
+                        ^^^^^^^^^
+AttributeError: 'MessageHandler' object has no attribute 'tbot'. Did you mean: 'bot'?
+2025-01-09 06:09:42,976 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:09:42,977 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:09:42,980 [WARNING] Bot run was cancelled
+2025-01-09 06:09:42,981 [INFO] Shutting down bot...
+2025-01-09 06:09:42,981 [INFO] All clients disconnected successfully.
+2025-01-09 06:09:42,981 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:09:42,984 [INFO] Bot shut down successfully
+2025-01-09 06:09:44,385 [INFO] Config file loaded successfully.
+2025-01-09 06:09:44,385 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:09:44,386 [INFO] Config file loaded successfully.
+2025-01-09 06:09:44,386 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:09:44,387 [INFO] ClientManager initialized successfully.
+2025-01-09 06:09:44,387 [INFO] Bot initialized successfully
+2025-01-09 06:09:44,387 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:09:44,388 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:09:45,627 [INFO] Handlers initialized successfully
+2025-01-09 06:09:45,627 [INFO] No new sessions detected.
+2025-01-09 06:09:45,627 [INFO] Bot started successfully
+2025-01-09 06:09:45,627 [INFO] Bot is running...
+2025-01-09 06:09:47,419 [INFO] start command in CommandHandler
+2025-01-09 06:09:47,585 [INFO] message_handler in MessageHandler
+2025-01-09 06:09:47,586 [ERROR] Unhandled exception on message_handler
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 748, in message_handler
+    if event.chat_id in self.tbot._conversations:
+                        ^^^^^^^^^
+AttributeError: 'MessageHandler' object has no attribute 'tbot'. Did you mean: 'bot'?
+2025-01-09 06:09:48,466 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:09:48,467 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:09:48,467 [INFO] add_account in AccountHandler
+2025-01-09 06:09:55,803 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:09:55,803 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:09:55,807 [WARNING] Bot run was cancelled
+2025-01-09 06:09:55,807 [INFO] Shutting down bot...
+2025-01-09 06:09:55,807 [INFO] All clients disconnected successfully.
+2025-01-09 06:09:55,807 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:09:55,811 [INFO] Bot shut down successfully
+2025-01-09 06:10:03,133 [INFO] Config file loaded successfully.
+2025-01-09 06:10:03,133 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:10:03,135 [INFO] Config file loaded successfully.
+2025-01-09 06:10:03,135 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:10:03,135 [INFO] ClientManager initialized successfully.
+2025-01-09 06:10:03,135 [INFO] Bot initialized successfully
+2025-01-09 06:10:03,136 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:10:03,137 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:10:04,389 [INFO] Handlers initialized successfully
+2025-01-09 06:10:04,389 [INFO] No new sessions detected.
+2025-01-09 06:10:04,389 [INFO] Bot started successfully
+2025-01-09 06:10:04,389 [INFO] Bot is running...
+2025-01-09 06:10:06,397 [INFO] start command in CommandHandler
+2025-01-09 06:10:06,584 [INFO] message_handler in MessageHandler
+2025-01-09 06:10:06,584 [ERROR] Unhandled exception on message_handler
+Traceback (most recent call last):
+  File "/home/orv/Documents/projects/Telegram-Panel/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/orv/Documents/projects/Telegram-Panel/src/Handlers.py", line 748, in message_handler
+    if event.chat_id in self.tbot._conversations:
+                        ^^^^^^^^^
+AttributeError: 'MessageHandler' object has no attribute 'tbot'. Did you mean: 'bot'?
+2025-01-09 06:12:03,969 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:12:03,970 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:12:03,974 [WARNING] Bot run was cancelled
+2025-01-09 06:12:03,974 [INFO] Shutting down bot...
+2025-01-09 06:12:03,974 [INFO] All clients disconnected successfully.
+2025-01-09 06:12:03,974 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:12:03,978 [INFO] Bot shut down successfully
+2025-01-09 06:12:09,118 [INFO] Config file loaded successfully.
+2025-01-09 06:12:09,118 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:12:09,119 [INFO] Config file loaded successfully.
+2025-01-09 06:12:09,120 [INFO] ConfigManager initialized successfully.
+2025-01-09 06:12:09,120 [INFO] ClientManager initialized successfully.
+2025-01-09 06:12:09,120 [INFO] Bot initialized successfully
+2025-01-09 06:12:09,120 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-09 06:12:19,131 [WARNING] Attempt 1 at connecting failed: TimeoutError: 
+2025-01-09 06:12:20,134 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:12:21,566 [INFO] Handlers initialized successfully
+2025-01-09 06:12:21,567 [INFO] No new sessions detected.
+2025-01-09 06:12:21,567 [INFO] Bot started successfully
+2025-01-09 06:12:21,567 [INFO] Bot is running...
+2025-01-09 06:12:23,576 [INFO] start command in CommandHandler
+2025-01-09 06:12:23,768 [INFO] message_handler in MessageHandler
+2025-01-09 06:12:25,355 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:12:25,355 [INFO] add_account in callback_handler in CallbackHandler
+2025-01-09 06:12:25,355 [INFO] add_account in AccountHandler
+2025-01-09 06:12:33,626 [INFO] start command in CommandHandler
+2025-01-09 06:12:36,583 [INFO] message_handler in MessageHandler
+2025-01-09 06:12:36,583 [INFO] phone_number_handler in AccountHandler
+2025-01-09 06:12:36,583 [ERROR] Error in phone_number_handler: 'TelegramBot' object has no attribute 'api_id'
+2025-01-09 06:12:36,847 [INFO] cleanup_temp_handlers in AccountHandler
+2025-01-09 06:12:36,878 [INFO] start command in CommandHandler
+2025-01-09 06:12:39,768 [INFO] message_handler in MessageHandler
+2025-01-09 06:12:39,768 [INFO] phone_number_handler in AccountHandler
+2025-01-09 06:12:39,769 [ERROR] Error in phone_number_handler: 'TelegramBot' object has no attribute 'api_id'
+2025-01-09 06:12:39,771 [INFO] start command in CommandHandler
+2025-01-09 06:12:40,094 [INFO] cleanup_temp_handlers in AccountHandler
+2025-01-09 06:12:40,098 [INFO] message_handler in MessageHandler
+2025-01-09 06:12:40,098 [INFO] phone_number_handler in AccountHandler
+2025-01-09 06:12:40,099 [ERROR] Error in phone_number_handler: 'TelegramBot' object has no attribute 'api_id'
+2025-01-09 06:12:40,286 [INFO] cleanup_temp_handlers in AccountHandler
+2025-01-09 06:12:42,378 [INFO] callback_handler in CallbackHandler
+2025-01-09 06:12:42,379 [INFO] show_stats in callback_handler in CallbackHandler
+2025-01-09 06:12:42,379 [INFO] show_stats in StatsHandler
+2025-01-09 06:12:53,585 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-09 06:12:53,586 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-09 06:12:53,589 [WARNING] Bot run was cancelled
+2025-01-09 06:12:53,589 [INFO] Shutting down bot...
+2025-01-09 06:12:53,589 [INFO] All clients disconnected successfully.
+2025-01-09 06:12:53,589 [INFO] Not disconnecting (already have no connection)
+2025-01-09 06:12:53,593 [INFO] Bot shut down successfully

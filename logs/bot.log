@@ -525,3 +525,319 @@ AttributeError: 'MessageHandler' object has no attribute 'tbot'. Did you mean: '
 2025-01-09 07:13:32,760 [INFO] All clients disconnected successfully.
 2025-01-09 07:13:32,760 [INFO] Not disconnecting (already have no connection)
 2025-01-09 07:13:32,763 [INFO] Bot shut down successfully
+2025-01-11 04:02:24,030 [INFO] Config file loaded successfully.
+2025-01-11 04:02:24,030 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:02:24,032 [INFO] Config file loaded successfully.
+2025-01-11 04:02:24,032 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:02:24,032 [INFO] ClientManager initialized successfully.
+2025-01-11 04:02:24,032 [INFO] Bot initialized successfully
+2025-01-11 04:02:24,033 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:02:24,034 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:02:25,705 [INFO] Handlers initialized successfully
+2025-01-11 04:02:25,705 [INFO] No new sessions detected.
+2025-01-11 04:02:25,706 [INFO] Bot started successfully
+2025-01-11 04:02:25,706 [INFO] Bot is running...
+2025-01-11 04:02:39,492 [INFO] start command in CommandHandler
+2025-01-11 04:02:39,684 [INFO] message_handler in MessageHandler
+2025-01-11 04:03:11,689 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:03:11,690 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:03:11,694 [WARNING] Bot run was cancelled
+2025-01-11 04:03:11,694 [INFO] Shutting down bot...
+2025-01-11 04:03:11,694 [INFO] All clients disconnected successfully.
+2025-01-11 04:03:11,695 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:03:11,701 [INFO] Bot shut down successfully
+2025-01-11 04:03:13,667 [INFO] Config file loaded successfully.
+2025-01-11 04:03:13,667 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:03:13,668 [INFO] Config file loaded successfully.
+2025-01-11 04:03:13,669 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:03:13,669 [INFO] ClientManager initialized successfully.
+2025-01-11 04:03:13,669 [INFO] Bot initialized successfully
+2025-01-11 04:03:13,670 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:03:13,671 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:03:15,488 [INFO] Handlers initialized successfully
+2025-01-11 04:03:15,488 [INFO] No new sessions detected.
+2025-01-11 04:03:15,488 [INFO] Bot started successfully
+2025-01-11 04:03:15,488 [INFO] Bot is running...
+2025-01-11 04:03:19,422 [INFO] start command in CommandHandler
+2025-01-11 04:03:19,719 [INFO] message_handler in MessageHandler
+2025-01-11 04:03:48,768 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:03:48,769 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:03:48,775 [WARNING] Bot run was cancelled
+2025-01-11 04:03:48,775 [INFO] Shutting down bot...
+2025-01-11 04:03:48,775 [INFO] All clients disconnected successfully.
+2025-01-11 04:03:48,775 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:03:48,782 [INFO] Bot shut down successfully
+2025-01-11 04:03:50,294 [INFO] Config file loaded successfully.
+2025-01-11 04:03:50,294 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:03:50,296 [INFO] Config file loaded successfully.
+2025-01-11 04:03:50,296 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:03:50,296 [INFO] ClientManager initialized successfully.
+2025-01-11 04:03:50,297 [INFO] Bot initialized successfully
+2025-01-11 04:03:50,297 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:03:50,298 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:03:51,838 [INFO] Handlers initialized successfully
+2025-01-11 04:03:51,838 [INFO] No new sessions detected.
+2025-01-11 04:03:51,838 [INFO] Bot started successfully
+2025-01-11 04:03:51,838 [INFO] Bot is running...
+2025-01-11 04:03:52,964 [INFO] start command in CommandHandler
+2025-01-11 04:03:53,167 [INFO] message_handler in MessageHandler
+2025-01-11 04:04:02,740 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:04:02,740 [INFO] account_management in callback_handler
+2025-01-11 04:04:26,214 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:04:26,214 [INFO] individual_operations in callback_handler
+2025-01-11 04:06:35,781 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:06:35,782 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:06:35,786 [WARNING] Bot run was cancelled
+2025-01-11 04:06:35,786 [INFO] Shutting down bot...
+2025-01-11 04:06:35,786 [INFO] All clients disconnected successfully.
+2025-01-11 04:06:35,786 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:06:35,792 [INFO] Bot shut down successfully
+2025-01-11 04:06:37,612 [INFO] Config file loaded successfully.
+2025-01-11 04:06:37,612 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:06:37,613 [INFO] Config file loaded successfully.
+2025-01-11 04:06:37,613 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:06:37,614 [INFO] ClientManager initialized successfully.
+2025-01-11 04:06:37,614 [INFO] Bot initialized successfully
+2025-01-11 04:06:37,614 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:06:37,616 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:06:39,220 [INFO] Handlers initialized successfully
+2025-01-11 04:06:39,220 [INFO] No new sessions detected.
+2025-01-11 04:06:39,221 [INFO] Bot started successfully
+2025-01-11 04:06:39,221 [INFO] Bot is running...
+2025-01-11 04:06:42,498 [INFO] start command in CommandHandler
+2025-01-11 04:06:42,729 [INFO] message_handler in MessageHandler
+2025-01-11 04:06:44,499 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:06:44,499 [INFO] account_management in callback_handler
+2025-01-11 04:06:44,499 [ERROR] Error in callback_handler: type object 'Keyboard' has no attribute 'individual_operations_keyboard'
+2025-01-11 04:06:52,240 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:06:52,241 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:06:52,246 [WARNING] Bot run was cancelled
+2025-01-11 04:06:52,246 [INFO] Shutting down bot...
+2025-01-11 04:06:52,246 [INFO] All clients disconnected successfully.
+2025-01-11 04:06:52,246 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:06:52,252 [INFO] Bot shut down successfully
+2025-01-11 04:06:54,276 [INFO] Config file loaded successfully.
+2025-01-11 04:06:54,277 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:06:54,278 [INFO] Config file loaded successfully.
+2025-01-11 04:06:54,278 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:06:54,279 [INFO] ClientManager initialized successfully.
+2025-01-11 04:06:54,279 [INFO] Bot initialized successfully
+2025-01-11 04:06:54,279 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:06:54,280 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:06:55,936 [INFO] Handlers initialized successfully
+2025-01-11 04:06:55,937 [INFO] No new sessions detected.
+2025-01-11 04:06:55,937 [INFO] Bot started successfully
+2025-01-11 04:06:55,937 [INFO] Bot is running...
+2025-01-11 04:06:57,574 [INFO] start command in CommandHandler
+2025-01-11 04:06:57,781 [INFO] message_handler in MessageHandler
+2025-01-11 04:06:58,722 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:06:58,723 [INFO] account_management in callback_handler
+2025-01-11 04:07:00,944 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:07:00,945 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:07:00,950 [WARNING] Bot run was cancelled
+2025-01-11 04:07:00,950 [INFO] Shutting down bot...
+2025-01-11 04:07:00,950 [INFO] All clients disconnected successfully.
+2025-01-11 04:07:00,950 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:07:00,955 [INFO] Bot shut down successfully
+2025-01-11 04:08:42,570 [INFO] Config file loaded successfully.
+2025-01-11 04:08:42,571 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:08:42,572 [INFO] Config file loaded successfully.
+2025-01-11 04:08:42,573 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:08:42,573 [INFO] ClientManager initialized successfully.
+2025-01-11 04:08:42,573 [INFO] Bot initialized successfully
+2025-01-11 04:08:42,573 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:08:42,575 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:08:44,437 [INFO] Handlers initialized successfully
+2025-01-11 04:08:44,437 [INFO] No new sessions detected.
+2025-01-11 04:08:44,437 [INFO] Bot started successfully
+2025-01-11 04:08:44,437 [INFO] Bot is running...
+2025-01-11 04:09:01,945 [INFO] start command in CommandHandler
+2025-01-11 04:09:02,134 [INFO] message_handler in MessageHandler
+2025-01-11 04:09:03,144 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:09:03,145 [INFO] account_management in callback_handler
+2025-01-11 04:09:03,145 [ERROR] Error in callback_handler: type object 'Keyboard' has no attribute 'individual_operations_keyboard'
+2025-01-11 04:09:36,409 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:09:36,409 [INFO] account_management in callback_handler
+2025-01-11 04:09:36,409 [ERROR] Error in callback_handler: type object 'Keyboard' has no attribute 'individual_operations_keyboard'
+2025-01-11 04:09:39,286 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:09:39,286 [INFO] monitor_mode in callback_handler
+2025-01-11 04:09:39,286 [ERROR] Error in callback_handler: type object 'Keyboard' has no attribute 'individual_operations_keyboard'
+2025-01-11 04:11:27,909 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:11:27,909 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:11:27,916 [WARNING] Bot run was cancelled
+2025-01-11 04:11:27,916 [INFO] Shutting down bot...
+2025-01-11 04:11:27,917 [INFO] All clients disconnected successfully.
+2025-01-11 04:11:27,917 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:11:27,921 [INFO] Bot shut down successfully
+2025-01-11 04:11:54,438 [INFO] Config file loaded successfully.
+2025-01-11 04:11:54,438 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:11:54,439 [INFO] Config file loaded successfully.
+2025-01-11 04:11:54,440 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:11:54,440 [INFO] ClientManager initialized successfully.
+2025-01-11 04:11:54,440 [INFO] Bot initialized successfully
+2025-01-11 04:11:54,440 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:11:54,442 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:11:56,101 [INFO] Handlers initialized successfully
+2025-01-11 04:11:56,101 [INFO] No new sessions detected.
+2025-01-11 04:11:56,101 [INFO] Bot started successfully
+2025-01-11 04:11:56,101 [INFO] Bot is running...
+2025-01-11 04:11:57,738 [INFO] start command in CommandHandler
+2025-01-11 04:11:58,043 [INFO] message_handler in MessageHandler
+2025-01-11 04:11:58,992 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:11:58,993 [INFO] account_management in callback_handler
+2025-01-11 04:12:02,353 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:12:02,353 [INFO] individual_operations in callback_handler
+2025-01-11 04:13:32,760 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:32,761 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:32,767 [WARNING] Bot run was cancelled
+2025-01-11 04:13:32,767 [INFO] Shutting down bot...
+2025-01-11 04:13:32,767 [INFO] All clients disconnected successfully.
+2025-01-11 04:13:32,767 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:13:32,772 [INFO] Bot shut down successfully
+2025-01-11 04:13:34,553 [INFO] Config file loaded successfully.
+2025-01-11 04:13:34,553 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:34,555 [INFO] Config file loaded successfully.
+2025-01-11 04:13:34,555 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:34,555 [INFO] ClientManager initialized successfully.
+2025-01-11 04:13:34,555 [INFO] Bot initialized successfully
+2025-01-11 04:13:34,556 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:34,557 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:36,129 [ERROR] Error initializing handlers: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:36,130 [ERROR] Error during bot start: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:36,130 [ERROR] Error running bot: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:36,130 [INFO] Shutting down bot...
+2025-01-11 04:13:36,130 [INFO] All clients disconnected successfully.
+2025-01-11 04:13:36,130 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:36,131 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:36,137 [INFO] Bot shut down successfully
+2025-01-11 04:13:40,308 [INFO] Config file loaded successfully.
+2025-01-11 04:13:40,308 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:40,310 [INFO] Config file loaded successfully.
+2025-01-11 04:13:40,310 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:40,310 [INFO] ClientManager initialized successfully.
+2025-01-11 04:13:40,310 [INFO] Bot initialized successfully
+2025-01-11 04:13:40,311 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:40,311 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:42,100 [ERROR] Error initializing handlers: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:42,100 [ERROR] Error during bot start: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:42,100 [ERROR] Error running bot: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:42,101 [INFO] Shutting down bot...
+2025-01-11 04:13:42,101 [INFO] All clients disconnected successfully.
+2025-01-11 04:13:42,101 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:42,102 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:42,107 [INFO] Bot shut down successfully
+2025-01-11 04:13:55,846 [INFO] Config file loaded successfully.
+2025-01-11 04:13:55,847 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:55,849 [INFO] Config file loaded successfully.
+2025-01-11 04:13:55,849 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:13:55,849 [INFO] ClientManager initialized successfully.
+2025-01-11 04:13:55,849 [INFO] Bot initialized successfully
+2025-01-11 04:13:55,850 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:55,851 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:57,452 [ERROR] Error initializing handlers: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:57,452 [ERROR] Error during bot start: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:57,453 [ERROR] Error running bot: 'CallbackHandler' object has no attribute 'show_individual_keyboard'
+2025-01-11 04:13:57,453 [INFO] Shutting down bot...
+2025-01-11 04:13:57,453 [INFO] All clients disconnected successfully.
+2025-01-11 04:13:57,453 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:13:57,454 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:13:57,457 [INFO] Bot shut down successfully
+2025-01-11 04:14:55,860 [INFO] Config file loaded successfully.
+2025-01-11 04:14:55,860 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:14:55,862 [INFO] Config file loaded successfully.
+2025-01-11 04:14:55,862 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:14:55,863 [INFO] ClientManager initialized successfully.
+2025-01-11 04:14:55,863 [INFO] Bot initialized successfully
+2025-01-11 04:14:55,863 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:14:55,864 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:14:57,450 [INFO] Handlers initialized successfully
+2025-01-11 04:14:57,451 [INFO] No new sessions detected.
+2025-01-11 04:14:57,451 [INFO] Bot started successfully
+2025-01-11 04:14:57,451 [INFO] Bot is running...
+2025-01-11 04:15:00,383 [INFO] start command in CommandHandler
+2025-01-11 04:15:00,572 [INFO] message_handler in MessageHandler
+2025-01-11 04:15:01,906 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:15:01,906 [INFO] account_management in callback_handler
+2025-01-11 04:15:03,818 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:15:03,818 [ERROR] No handler found for callback data: individual_operations
+2025-01-11 04:15:30,763 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:15:30,764 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:15:30,769 [WARNING] Bot run was cancelled
+2025-01-11 04:15:30,769 [INFO] Shutting down bot...
+2025-01-11 04:15:30,770 [INFO] All clients disconnected successfully.
+2025-01-11 04:15:30,770 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:15:30,776 [INFO] Bot shut down successfully
+2025-01-11 04:15:32,950 [INFO] Config file loaded successfully.
+2025-01-11 04:15:32,950 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:15:32,952 [INFO] Config file loaded successfully.
+2025-01-11 04:15:32,952 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:15:32,952 [INFO] ClientManager initialized successfully.
+2025-01-11 04:15:32,952 [INFO] Bot initialized successfully
+2025-01-11 04:15:32,953 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:15:32,954 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:15:34,509 [INFO] Handlers initialized successfully
+2025-01-11 04:15:34,509 [INFO] No new sessions detected.
+2025-01-11 04:15:34,510 [INFO] Bot started successfully
+2025-01-11 04:15:34,510 [INFO] Bot is running...
+2025-01-11 04:15:35,894 [INFO] start command in CommandHandler
+2025-01-11 04:15:36,089 [INFO] message_handler in MessageHandler
+2025-01-11 04:15:37,466 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:15:37,466 [INFO] individual_keyboard in callback_handler
+2025-01-11 04:15:41,266 [INFO] start command in CommandHandler
+2025-01-11 04:15:41,467 [INFO] message_handler in MessageHandler
+2025-01-11 04:15:42,618 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:15:42,618 [INFO] bulk_operations in callback_handler
+2025-01-11 04:15:47,147 [INFO] start command in CommandHandler
+2025-01-11 04:15:47,344 [INFO] message_handler in MessageHandler
+2025-01-11 04:15:48,714 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:15:48,714 [INFO] monitor_mode in callback_handler
+2025-01-11 04:16:08,466 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:16:08,466 [INFO] report in callback_handler
+2025-01-11 04:18:19,414 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:18:19,414 [INFO] account_management in callback_handler
+2025-01-11 04:34:40,148 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:34:40,149 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:34:40,153 [WARNING] Bot run was cancelled
+2025-01-11 04:34:40,153 [INFO] Shutting down bot...
+2025-01-11 04:34:40,153 [INFO] All clients disconnected successfully.
+2025-01-11 04:34:40,153 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:34:40,159 [INFO] Bot shut down successfully
+2025-01-11 04:34:44,845 [INFO] Config file loaded successfully.
+2025-01-11 04:34:44,845 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:34:44,847 [INFO] Config file loaded successfully.
+2025-01-11 04:34:44,847 [INFO] ConfigManager initialized successfully.
+2025-01-11 04:34:44,847 [INFO] ClientManager initialized successfully.
+2025-01-11 04:34:44,847 [INFO] Bot initialized successfully
+2025-01-11 04:34:44,848 [INFO] Connecting to 149.154.167.91:443/TcpFull...
+2025-01-11 04:34:44,849 [INFO] Connection to 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:34:46,514 [INFO] Handlers initialized successfully
+2025-01-11 04:34:46,515 [INFO] No new sessions detected.
+2025-01-11 04:34:46,515 [INFO] Bot started successfully
+2025-01-11 04:34:46,515 [INFO] Bot is running...
+2025-01-11 04:34:49,554 [INFO] start command in CommandHandler
+2025-01-11 04:34:49,743 [INFO] message_handler in MessageHandler
+2025-01-11 04:34:50,768 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:50,768 [INFO] account_management in callback_handler
+2025-01-11 04:34:52,002 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:52,002 [INFO] exit in callback_handler
+2025-01-11 04:34:55,787 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:55,787 [INFO] individual_keyboard in callback_handler
+2025-01-11 04:34:56,924 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:56,924 [INFO] exit in callback_handler
+2025-01-11 04:34:58,439 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:58,440 [INFO] bulk_operations in callback_handler
+2025-01-11 04:34:59,642 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:34:59,642 [INFO] exit in callback_handler
+2025-01-11 04:35:01,009 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:35:01,009 [INFO] monitor_mode in callback_handler
+2025-01-11 04:35:02,134 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:35:02,134 [INFO] exit in callback_handler
+2025-01-11 04:35:03,907 [INFO] callback_handler in CallbackHandler
+2025-01-11 04:35:03,908 [INFO] report in callback_handler
+2025-01-11 04:35:45,375 [INFO] Disconnecting from 149.154.167.91:443/TcpFull...
+2025-01-11 04:35:45,376 [INFO] Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-01-11 04:35:45,420 [WARNING] Bot run was cancelled
+2025-01-11 04:35:45,420 [INFO] Shutting down bot...
+2025-01-11 04:35:45,421 [INFO] All clients disconnected successfully.
+2025-01-11 04:35:45,421 [INFO] Not disconnecting (already have no connection)
+2025-01-11 04:35:45,425 [INFO] Bot shut down successfully

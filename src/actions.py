@@ -2,7 +2,8 @@ import logging
 import random
 import asyncio
 from telethon import TelegramClient, events, Button
-from telethon.tl.functions.messages import SendVoteRequest
+from telethon.tl.functions.messages import SendVoteRequest, SendReactionRequest
+from telethon.tl.types import ReactionEmoji, ReactionCustomEmoji
 from src.Config import CHANNEL_ID
 from src.Validation import InputValidator
 
@@ -39,25 +40,20 @@ class Actions:
 
     async def handle_group_action(self, event, action_name, num_accounts):
         """
-        Handle the group action by calling the respective function for all selected accounts.
-        Uses semaphore to limit concurrent operations and avoid rate limiting.
+        Handle the group action by calling the respective bulk handler.
+        For bulk operations, we need to get input once and apply to all accounts.
         """
-        async with self.tbot.active_clients_lock:
-            accounts = list(self.tbot.active_clients.values())[:num_accounts]
+        # Store number of accounts for bulk operations
+        async with self.tbot._conversations_lock:
+            self.tbot.handlers[f'bulk_{action_name}_count'] = num_accounts
         
-        async def execute_action(account):
-            """Execute action with concurrency limit"""
-            async with self.operation_semaphore:
-                try:
-                    await getattr(self, action_name)(account, event)
-                    # Add delay between operations to avoid rate limiting
-                    await asyncio.sleep(random.uniform(1, 3))
-                except Exception as e:
-                    logger.error(f"Error executing {action_name} for account {account.session.filename}: {e}")
-        
-        # Execute all actions concurrently with semaphore limiting
-        tasks = [execute_action(account) for account in accounts]
-        await asyncio.gather(*tasks, return_exceptions=True)
+        # Call the appropriate bulk handler
+        bulk_handler_name = f'bulk_{action_name}_prompt'
+        if hasattr(self, bulk_handler_name):
+            await getattr(self, bulk_handler_name)(event)
+        else:
+            # Fallback to individual action flow (for backward compatibility)
+            await getattr(self, action_name)(None, event)
 
     async def handle_individual_action(self, event, action_name, session):
         """
@@ -73,15 +69,26 @@ class Actions:
 
     async def reaction(self, account, event):
         """
-        Perform the reaction action.
+        Perform the reaction action for individual account.
         """
         # Step 1: Ask for the link to the message
         await event.respond("Please provide the link to the message where the reaction will be applied.")
-        self.tbot._conversations[event.chat_id] = 'reaction_link_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'reaction_link_handler'
+        if account:
+            self.tbot.handlers['reaction_account'] = account
+
+    async def bulk_reaction_prompt(self, event):
+        """
+        Prompt for bulk reaction - ask for link once.
+        """
+        await event.respond("Please provide the link to the message where reactions will be applied.")
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'bulk_reaction_link_handler'
 
     async def reaction_link_handler(self, event):
         """
-        Handle the link input for the reaction action.
+        Handle the link input for individual reaction action.
         """
         try:
             link = event.message.text.strip()
@@ -100,20 +107,51 @@ class Actions:
                 Button.inline("😢", b'reaction_sad'),
                 Button.inline("😡", b'reaction_angry')
             ])
-            self.tbot._conversations[event.chat_id] = 'reaction_select_handler'
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations[event.chat_id] = 'reaction_select_handler'
             self.tbot.handlers['reaction_link'] = link
         except Exception as e:
             logger.error(f"Error in reaction_link_handler: {e}")
             await event.respond("Error processing link. Please try again.")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             self.tbot.handlers.pop('reaction_link', None)
+
+    async def bulk_reaction_link_handler(self, event):
+        """
+        Handle the link input for bulk reaction action.
+        """
+        try:
+            link = event.message.text.strip()
+            
+            # Validate link
+            is_valid, error_msg = InputValidator.validate_telegram_link(link)
+            if not is_valid:
+                await event.respond(f"❌ {error_msg}\nPlease try again.")
+                return
+            
+            await event.respond("Please select a reaction:", buttons=[
+                Button.inline("👍", b'bulk_reaction_thumbsup'),
+                Button.inline("❤️", b'bulk_reaction_heart'),
+                Button.inline("😂", b'bulk_reaction_laugh'),
+                Button.inline("😮", b'bulk_reaction_wow'),
+                Button.inline("😢", b'bulk_reaction_sad'),
+                Button.inline("😡", b'bulk_reaction_angry')
+            ])
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations[event.chat_id] = 'bulk_reaction_select_handler'
+            self.tbot.handlers['bulk_reaction_link'] = link
+        except Exception as e:
+            logger.error(f"Error in bulk_reaction_link_handler: {e}")
+            await event.respond("Error processing link. Please try again.")
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
+            self.tbot.handlers.pop('bulk_reaction_link', None)
 
     async def reaction_select_handler(self, event):
         """
-        Handle the reaction selection.
+        Handle the reaction selection for individual account.
         """
-        # This handler should be added to callback handler, not message handler
-        # It's triggered by inline button clicks
         reaction_map = {
             'reaction_thumbsup': '👍',
             'reaction_heart': '❤️',
@@ -126,30 +164,52 @@ class Actions:
         data = event.data.decode() if hasattr(event, 'data') else event.message.text.strip()
         reaction = reaction_map.get(data, data)
         
-        async with self.tbot.active_clients_lock:
-            total_accounts = len(self.tbot.active_clients)
+        account = self.tbot.handlers.get('reaction_account')
+        link = self.tbot.handlers.get('reaction_link')
         
-        await event.respond(f"Please specify the number of reactions (from 1 to {total_accounts}):")
-        self.tbot._conversations[event.chat_id] = 'reaction_count_handler'
-        self.tbot.handlers['reaction'] = reaction
+        if account and link:
+            # Apply reaction immediately for individual account
+            try:
+                await self.apply_reaction(account, link, reaction)
+                await event.respond(f"Successfully applied {reaction} reaction using account {account.session.filename}")
+            except Exception as e:
+                logger.error(f"Error applying reaction: {e}")
+                await event.respond(f"Error applying reaction: {str(e)}")
+            finally:
+                # Cleanup
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations.pop(event.chat_id, None)
+                self.tbot.handlers.pop('reaction_link', None)
+                self.tbot.handlers.pop('reaction_account', None)
+        else:
+            await event.respond("Error: Missing account or link information.")
 
-    async def reaction_count_handler(self, event):
+    async def bulk_reaction_select_handler(self, event):
         """
-        Handle the number of reactions input.
+        Handle the reaction selection for bulk operation.
+        Applies reaction to all selected accounts immediately.
         """
-        try:
-            count = int(event.message.text.strip())
-            
+        reaction_map = {
+            'bulk_reaction_thumbsup': '👍',
+            'bulk_reaction_heart': '❤️',
+            'bulk_reaction_laugh': '😂',
+            'bulk_reaction_wow': '😮',
+            'bulk_reaction_sad': '😢',
+            'bulk_reaction_angry': '😡'
+        }
+        
+        data = event.data.decode() if hasattr(event, 'data') else event.message.text.strip()
+        reaction = reaction_map.get(data, data)
+        
+        link = self.tbot.handlers.get('bulk_reaction_link')
+        num_accounts = self.tbot.handlers.get('bulk_reaction_count')
+        
+        if link and num_accounts:
+            # Get accounts
             async with self.tbot.active_clients_lock:
-                total_clients = len(self.tbot.active_clients)
-                if count < 1 or count > total_clients:
-                    raise ValueError(f"Invalid number of reactions. Must be between 1 and {total_clients}.")
-                accounts = list(self.tbot.active_clients.values())[:count]
+                accounts = list(self.tbot.active_clients.values())[:num_accounts]
             
-            link = self.tbot.handlers['reaction_link']
-            reaction = self.tbot.handlers['reaction']
-            
-            # Use semaphore to limit concurrent reactions
+            # Apply reactions with concurrency control
             async def apply_reaction_with_limit(account):
                 async with self.operation_semaphore:
                     try:
@@ -158,37 +218,87 @@ class Actions:
                     except Exception as e:
                         logger.error(f"Error applying reaction with account {account.session.filename}: {e}")
             
-            # Execute all reactions with concurrency control
+            # Execute all reactions
             tasks = [apply_reaction_with_limit(account) for account in accounts]
             await asyncio.gather(*tasks, return_exceptions=True)
             
-            await event.respond(f"Applied {reaction} reaction using {count} accounts.")
+            await event.respond(f"Applied {reaction} reaction using {num_accounts} accounts.")
             
             # Cleanup
-            self.tbot.handlers.pop('reaction_link', None)
-            self.tbot.handlers.pop('reaction', None)
-            self.tbot._conversations.pop(event.chat_id, None)
-            
-        except ValueError as e:
-            await event.respond(f"Error: {e}. Please enter a valid number of reactions.")
-            # Don't reset conversation state - let it stay to retry
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
+            self.tbot.handlers.pop('bulk_reaction_link', None)
+            self.tbot.handlers.pop('bulk_reaction_count', None)
+        else:
+            await event.respond("Error: Missing link or account count information.")
+
+
+    def parse_telegram_link(self, link):
+        """
+        Parse Telegram link to extract chat_id and message_id.
+        Returns: (chat_id, message_id) tuple
+        """
+        try:
+            parts = link.split('/')
+            if 't.me/c/' in link:
+                # Format: https://t.me/c/1234567890/123
+                chat_id = int('-100' + parts[-2])
+                message_id = int(parts[-1])
+                return chat_id, message_id
+            else:
+                # Format: https://t.me/username/123
+                chat_username = parts[-2].replace('@', '')
+                message_id = int(parts[-1])
+                return chat_username, message_id
+        except (ValueError, IndexError) as e:
+            logger.error(f"Error parsing link {link}: {e}")
+            raise ValueError(f"Invalid Telegram link format: {link}")
 
     async def apply_reaction(self, account, link, reaction):
         """
         Apply the selected reaction using the given account.
+        Uses SendReactionRequest to properly react to messages.
         """
         try:
-            await account.send_message(link, reaction)
+            # Parse link to get chat_id and message_id
+            chat_id, message_id = self.parse_telegram_link(link)
+            
+            # Map emoji to reaction
+            reaction_map = {
+                '👍': ReactionEmoji(emoticon='👍'),
+                '❤️': ReactionEmoji(emoticon='❤️'),
+                '😂': ReactionEmoji(emoticon='😂'),
+                '😮': ReactionEmoji(emoticon='😮'),
+                '😢': ReactionEmoji(emoticon='😢'),
+                '😡': ReactionEmoji(emoticon='😡')
+            }
+            
+            # Get reaction object
+            reaction_obj = reaction_map.get(reaction, ReactionEmoji(emoticon=reaction))
+            
+            # Get entity if it's a username
+            if isinstance(chat_id, str):
+                entity = await account.get_entity(chat_id)
+                chat_id = entity.id
+            
+            # Send reaction using SendReactionRequest
+            await account(SendReactionRequest(
+                peer=chat_id,
+                msg_id=message_id,
+                reaction=[reaction_obj]
+            ))
             logger.info(f"Applied {reaction} reaction using account {account.session.filename}")
         except Exception as e:
-            logger.error(f"Error applying reaction: {e}")
+            logger.error(f"Error applying reaction: {e}", exc_info=True)
+            raise
 
     async def poll(self, account, event):
         """
         Perform the poll action - vote on a poll.
         """
         await event.respond("Please provide the link to the poll:")
-        self.tbot._conversations[event.chat_id] = 'poll_link_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'poll_link_handler'
         self.tbot.handlers['poll_account'] = account
 
     async def poll_link_handler(self, event):
@@ -206,11 +316,13 @@ class Actions:
             
             self.tbot.handlers['poll_link'] = link
             await event.respond("Please enter the option number you want to vote for (e.g., 1, 2, 3):")
-            self.tbot._conversations[event.chat_id] = 'poll_option_handler'
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations[event.chat_id] = 'poll_option_handler'
         except Exception as e:
             logger.error(f"Error in poll_link_handler: {e}")
             await event.respond("Error processing link. Please try again.")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             self.tbot.handlers.pop('poll_account', None)
             self.tbot.handlers.pop('poll_link', None)
 
@@ -254,19 +366,22 @@ class Actions:
             # Cleanup
             self.tbot.handlers.pop('poll_account', None)
             self.tbot.handlers.pop('poll_link', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error voting on poll: {e}")
             await event.respond(f"Error voting on poll: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def join(self, account, event):
         """
         Perform the join action - join a group or channel.
         """
         await event.respond("Please provide the group/channel link or username to join:")
-        self.tbot._conversations[event.chat_id] = 'join_link_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'join_link_handler'
         self.tbot.handlers['join_account'] = account
 
     async def join_link_handler(self, event):
@@ -290,19 +405,22 @@ class Actions:
             
             # Cleanup
             self.tbot.handlers.pop('join_account', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error joining group/channel: {e}")
             await event.respond(f"Error joining group/channel: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def left(self, account, event):
         """
         Perform the left action - leave a group or channel.
         """
         await event.respond("Please provide the group/channel link or username to leave:")
-        self.tbot._conversations[event.chat_id] = 'left_link_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'left_link_handler'
         self.tbot.handlers['left_account'] = account
 
     async def left_link_handler(self, event):
@@ -327,19 +445,22 @@ class Actions:
             
             # Cleanup
             self.tbot.handlers.pop('left_account', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error leaving group/channel: {e}")
             await event.respond(f"Error leaving group/channel: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def block(self, account, event):
         """
         Perform the block action - block a user.
         """
         await event.respond("Please provide the user ID or username to block:")
-        self.tbot._conversations[event.chat_id] = 'block_user_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'block_user_handler'
         self.tbot.handlers['block_account'] = account
 
     async def block_user_handler(self, event):
@@ -358,19 +479,22 @@ class Actions:
             
             # Cleanup
             self.tbot.handlers.pop('block_account', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error blocking user: {e}")
             await event.respond(f"Error blocking user: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def send_pv(self, account, event):
         """
         Perform the send_pv action - send a private message to a user.
         """
         await event.respond("Please provide the user ID or username to send a message to:")
-        self.tbot._conversations[event.chat_id] = 'send_pv_user_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'send_pv_user_handler'
         self.tbot.handlers['send_pv_account'] = account
 
     async def send_pv_user_handler(self, event):
@@ -381,11 +505,13 @@ class Actions:
             user_input = event.message.text.strip()
             self.tbot.handlers['send_pv_user'] = user_input
             await event.respond("Please enter the message you want to send:")
-            self.tbot._conversations[event.chat_id] = 'send_pv_message_handler'
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations[event.chat_id] = 'send_pv_message_handler'
         except Exception as e:
             logger.error(f"Error in send_pv_user_handler: {e}")
             await event.respond("Error processing user input. Please try again.")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             self.tbot.handlers.pop('send_pv_account', None)
             self.tbot.handlers.pop('send_pv_user', None)
 
@@ -413,19 +539,22 @@ class Actions:
             # Cleanup
             self.tbot.handlers.pop('send_pv_account', None)
             self.tbot.handlers.pop('send_pv_user', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error sending private message: {e}")
             await event.respond(f"Error sending private message: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def comment(self, account, event):
         """
         Perform the comment action - comment on a post/message.
         """
         await event.respond("Please provide the link to the post/message:")
-        self.tbot._conversations[event.chat_id] = 'comment_link_handler'
+        async with self.tbot._conversations_lock:
+            self.tbot._conversations[event.chat_id] = 'comment_link_handler'
         self.tbot.handlers['comment_account'] = account
 
     async def comment_link_handler(self, event):
@@ -443,11 +572,13 @@ class Actions:
             
             self.tbot.handlers['comment_link'] = link
             await event.respond("Please enter your comment:")
-            self.tbot._conversations[event.chat_id] = 'comment_text_handler'
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations[event.chat_id] = 'comment_text_handler'
         except Exception as e:
             logger.error(f"Error in comment_link_handler: {e}")
             await event.respond("Error processing link. Please try again.")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             self.tbot.handlers.pop('comment_account', None)
             self.tbot.handlers.pop('comment_link', None)
 
@@ -484,10 +615,12 @@ class Actions:
             # Cleanup
             self.tbot.handlers.pop('comment_account', None)
             self.tbot.handlers.pop('comment_link', None)
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
             
         except Exception as e:
             logger.error(f"Error posting comment: {e}")
             await event.respond(f"Error posting comment: {str(e)}")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 

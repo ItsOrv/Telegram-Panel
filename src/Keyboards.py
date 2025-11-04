@@ -86,6 +86,7 @@ class Keyboard:
     def individual_keyboard():
         """Returns the keyboard for individual operations"""
         return [
+            [Button.inline("Reaction", 'reaction')],
             [Button.inline("Send PV", 'send_pv')],
             [Button.inline("Join", 'join')],
             [Button.inline("Left", 'left')],

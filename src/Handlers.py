@@ -51,7 +51,8 @@ class KeywordHandler:
             if isinstance(event, events.CallbackQuery.Event):
                 buttons = [Button.inline("Cancel", b'cancel')]
                 await event.respond("Please enter the keyword you want to add.", buttons=buttons)
-                self.tbot._conversations[event.chat_id] = 'add_keyword_handler'
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations[event.chat_id] = 'add_keyword_handler'
                 return
 
             keyword = str(event.message.text.strip())
@@ -73,12 +74,14 @@ class KeywordHandler:
             await event.respond(f"📝 Current keywords: {keywords}")
             
             # Cleanup conversation state
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
         except Exception as e:
             logger.error(f"Error adding keyword: {e}")
             await event.respond("Error adding keyword")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def remove_keyword_handler(self, event):
         """Remove a keyword from monitoring"""
@@ -87,7 +90,8 @@ class KeywordHandler:
             if isinstance(event, events.CallbackQuery.Event):
                 buttons = [Button.inline("Cancel", b'cancel')]
                 await event.respond("Please enter the keyword you want to remove.", buttons=buttons)
-                self.tbot._conversations[event.chat_id] = 'remove_keyword_handler'
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations[event.chat_id] = 'remove_keyword_handler'
                 return
 
             keyword = str(event.message.text.strip())
@@ -102,12 +106,14 @@ class KeywordHandler:
             await event.respond(f"Current keywords: {keywords}")
             
             # Cleanup conversation state
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
         except Exception as e:
             logger.error(f"Error removing keyword: {e}")
             await event.respond("Error removing keyword")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def ignore_user_handler(self, event):
         """Ignore a user from further interaction"""
@@ -116,7 +122,8 @@ class KeywordHandler:
             if isinstance(event, events.CallbackQuery.Event):
                 buttons = [Button.inline("Cancel", b'cancel')]
                 await event.respond("Please enter the user ID you want to ignore.", buttons=buttons)
-                self.tbot._conversations[event.chat_id] = 'ignore_user_handler'
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations[event.chat_id] = 'ignore_user_handler'
                 return
 
             # Validate and parse user ID
@@ -136,12 +143,14 @@ class KeywordHandler:
             await event.respond(f"Ignored users: {ignored_users}")
             
             # Cleanup conversation state
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
         except Exception as e:
             logger.error(f"Error ignoring user: {e}")
             await event.respond("Error ignoring user")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def delete_ignore_user_handler(self, event):
         """Remove a user from the ignore list"""
@@ -150,7 +159,8 @@ class KeywordHandler:
             if isinstance(event, events.CallbackQuery.Event):
                 buttons = [Button.inline("Cancel", b'cancel')]
                 await event.respond("Please enter the user ID you want to stop ignoring.", buttons=buttons)
-                self.tbot._conversations[event.chat_id] = 'delete_ignore_user_handler'
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations[event.chat_id] = 'delete_ignore_user_handler'
                 return
 
             # Validate and parse user ID
@@ -170,12 +180,14 @@ class KeywordHandler:
             await event.respond(f"Ignored users: {ignored_users}")
             
             # Cleanup conversation state
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
         except Exception as e:
             logger.error(f"Error deleting ignored user: {e}")
             await event.respond("Error deleting ignored user")
-            self.tbot._conversations.pop(event.chat_id, None)
+            async with self.tbot._conversations_lock:
+                self.tbot._conversations.pop(event.chat_id, None)
 
     async def ignore_user(self, user_id, event): # for channel button
         """Ignore a user from further interaction."""
@@ -207,8 +219,10 @@ class MessageHandler:
             await event.respond("You are not the admin")
             return
 
-        if event.chat_id in self.tbot._conversations:
-            handler_name = self.tbot._conversations[event.chat_id]
+        async with self.tbot._conversations_lock:
+            handler_name = self.tbot._conversations.get(event.chat_id)
+        
+        if handler_name:
             
             # Account handlers
             if handler_name == 'phone_number_handler':
@@ -239,8 +253,8 @@ class MessageHandler:
             elif handler_name == 'reaction_link_handler':
                 await self.actions.reaction_link_handler(event)
                 return True
-            elif handler_name == 'reaction_count_handler':
-                await self.actions.reaction_count_handler(event)
+            elif handler_name == 'bulk_reaction_link_handler':
+                await self.actions.bulk_reaction_link_handler(event)
                 return True
             
             # Action handlers - Poll
@@ -506,7 +520,8 @@ class CallbackHandler:
 
             if data == 'cancel':
                 chat_id = event.chat_id
-                self.tbot._conversations.pop(chat_id, None)
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations.pop(chat_id, None)
                 await event.delete()
                 return
 
@@ -514,7 +529,8 @@ class CallbackHandler:
             if data == 'request_phone_number':
                 logger.info("request_phone_number in callback_handler")
                 await event.respond("Please enter your phone number:")
-                self.tbot._conversations[event.chat_id] = 'phone_number_handler'
+                async with self.tbot._conversations_lock:
+                    self.tbot._conversations[event.chat_id] = 'phone_number_handler'
             elif data.startswith('ignore_'):
                 parts = data.split('_')
                 if len(parts) == 2 and parts[1].isdigit():
@@ -534,6 +550,11 @@ class CallbackHandler:
                 # Check if it's a reaction emoji selection (not a number)
                 if data in ['reaction_thumbsup', 'reaction_heart', 'reaction_laugh', 'reaction_wow', 'reaction_sad', 'reaction_angry']:
                     await self.actions.reaction_select_handler(event)
+                    return
+            # Handle bulk reaction button selections
+            elif data.startswith('bulk_reaction_'):
+                if data in ['bulk_reaction_thumbsup', 'bulk_reaction_heart', 'bulk_reaction_laugh', 'bulk_reaction_wow', 'bulk_reaction_sad', 'bulk_reaction_angry']:
+                    await self.actions.bulk_reaction_select_handler(event)
                     return
             # Handle bulk action callbacks (e.g., "reaction_3" means 3 accounts for reaction)
             elif '_' in data:

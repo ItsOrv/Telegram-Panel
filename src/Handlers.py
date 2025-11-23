@@ -432,6 +432,7 @@ class CallbackHandler:
         self.callback_actions = {
             'add_account': self.account_handler.add_account,
             'list_accounts': self.account_handler.show_accounts,
+            'check_report_status': self.account_handler.check_all_accounts_report_status,
             'inactive_accounts': self.tbot.client_manager.show_inactive_accounts,
             'update_groups': self.account_handler.update_groups,
             'add_keyword': self.keyword_handler.add_keyword_handler,
@@ -484,7 +485,14 @@ class CallbackHandler:
 
     async def show_report_keyboard(self, event):
         """Handles the report keyboard display"""
-        await Keyboard.show_keyboard('report', event, self.tbot)
+        keyboard = Keyboard.report_keyboard()
+        try:
+            if hasattr(event, 'answer'):
+                await event.answer()
+            await event.edit("Report status - Please choose an option:", buttons=keyboard)
+        except Exception as e:
+            logger.error(f"Error showing report keyboard: {e}")
+            await event.respond("Report status - Please choose an option:", buttons=keyboard)
 
     # Bulk operation handlers
     async def handle_bulk_reaction(self, event):

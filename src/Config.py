@@ -203,6 +203,9 @@ PORTS = {
     "TELEGRAM": int(get_env_variable('TELEGRAM_PORT', default=443))
 }
 
+# Report check bot configuration
+REPORT_CHECK_BOT = get_env_variable('REPORT_CHECK_BOT', default='')
+
 # Validate environment configuration on module import
 try:
     validate_env_file()

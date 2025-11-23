@@ -12,6 +12,8 @@ os.environ['API_HASH'] = '95b61445e99a09288982e9d891b44c3d'
 os.environ['BOT_TOKEN'] = '8324526593:AAGursSWD_-IuusFIdralGm4LsRRNoVQyHY'
 os.environ['ADMIN_ID'] = '7718839318'
 os.environ['CHANNEL_ID'] = 'your_channel_id_or_username'
+# Report check bot (optional - set to your report check bot username or ID)
+os.environ['REPORT_CHECK_BOT'] = ''  # e.g., '@reportcheckbot' or '123456789'
 # No proxy - direct connection
 os.environ['PROXY_HOST'] = ''
 os.environ['PROXY_PORT'] = '1080'
@@ -57,8 +59,21 @@ def cleanup_session_files():
             except Exception as e:
                 print(f"  [WARN] Could not kill by PID: {e}")
         else:
-            # Unix-like systems - exclude current process
-            subprocess.run(['pkill', '-f', f'python.*start_bot'], capture_output=True, check=False, timeout=10)
+            # Unix-like systems - kill other python processes running start_bot, but not this one
+            try:
+                result = subprocess.run(['pgrep', '-f', 'python.*start_bot'], capture_output=True, text=True, check=False, timeout=10)
+                if result.returncode == 0:
+                    for pid_str in result.stdout.strip().split('\n'):
+                        if pid_str:
+                            try:
+                                pid = int(pid_str.strip())
+                                if pid != current_pid:
+                                    print(f"  [KILL] Terminating PID {pid}")
+                                    subprocess.run(['kill', '-9', str(pid)], capture_output=True, check=False, timeout=5)
+                            except (ValueError, IndexError):
+                                pass
+            except Exception as e:
+                print(f"  [WARN] Could not kill processes: {e}")
     except Exception as e:
         print(f"  [WARN] Could not kill processes: {e}")
 

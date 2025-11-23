@@ -15,7 +15,7 @@ class Keyboard:
                 Button.inline("Bulk", 'bulk_operations')
             ],
             [Button.inline("Monitor Mode", 'monitor_mode')],
-            [Button.inline("Report", 'report')]
+            [Button.inline("Report status", 'report')]
         ]
 
     @staticmethod
@@ -138,12 +138,21 @@ class Keyboard:
                     # For callback queries, answer first and then edit
                     if hasattr(event, 'answer'):
                         await event.answer()
+                    # Custom message for report keyboard
+                    if keyboard_name == 'report':
+                        message_text = "Report status - Please choose an option:"
+                    else:
+                        message_text = "Please choose an option:"
                     # Clear the previous keyboard
-                    await event.edit("Please choose an option:", buttons=keyboard)
+                    await event.edit(message_text, buttons=keyboard)
                 except Exception as e:
                     logger.error(f"Error showing keyboard {keyboard_name}: {e}")
                     # If edit fails, try responding
-                    await event.respond("Please choose an option:", buttons=keyboard)
+                    if keyboard_name == 'report':
+                        message_text = "Report status - Please choose an option:"
+                    else:
+                        message_text = "Please choose an option:"
+                    await event.respond(message_text, buttons=keyboard)
             return keyboard
         else:
             if event:

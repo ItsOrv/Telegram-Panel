@@ -1,5 +1,6 @@
 import logging
 from telethon import TelegramClient, events, Button
+from telethon.errors import FloodWaitError
 import asyncio
 from src.Config import API_ID, API_HASH, BOT_TOKEN, ADMIN_ID
 from src.Config import ConfigManager
@@ -62,8 +63,17 @@ class TelegramBot:
                 self.monitor = Monitor(self)
             
             logger.info("Starting bot connection...")
-            await self.tbot.start(bot_token=BOT_TOKEN)
-            logger.info("Bot connected to Telegram")
+            try:
+                await self.tbot.start(bot_token=BOT_TOKEN)
+                logger.info("Bot connected to Telegram")
+            except FloodWaitError as e:
+                wait_time = e.seconds
+                logger.warning(f"FloodWaitError: Telegram requires waiting {wait_time} seconds ({wait_time/60:.1f} minutes) before bot can start.")
+                logger.info(f"Waiting {wait_time} seconds...")
+                await asyncio.sleep(wait_time)
+                logger.info("Retrying bot connection...")
+                await self.tbot.start(bot_token=BOT_TOKEN)
+                logger.info("Bot connected to Telegram after waiting")
             
             await self.init_handlers()
             logger.info("Handlers initialized")
@@ -148,27 +158,32 @@ class TelegramBot:
         try:
             await self.start()
             logger.info("Bot is running...")
+            logger.info("=" * 60)
+            logger.info("✅ Bot started successfully and is ready to receive commands!")
+            logger.info("=" * 60)
 
             # Start monitoring messages for all active clients (only once per client)
             tasks = []
             async with self.active_clients_lock:
                 for client in self.active_clients.values():
                     if not hasattr(client, '_message_processing_set'):
-                        tasks.append(self.monitor.process_messages_for_client(client))
+                        # Start monitoring tasks in background (don't await them)
+                        asyncio.create_task(self.monitor.process_messages_for_client(client))
                         client._message_processing_set = True
-
-            # Use return_exceptions to prevent one failed task from cancelling others
-            if tasks:
-                results = await asyncio.gather(*tasks, return_exceptions=True)
-                for i, result in enumerate(results):
-                    if isinstance(result, Exception):
-                        logger.error(f"Task {i} failed with error: {result}")
             
+            # Keep the bot running until disconnected
+            logger.info("Bot is now running and waiting for messages...")
+            logger.info("Send /start to your bot in Telegram to begin.")
             await self.tbot.run_until_disconnected()
         except asyncio.CancelledError:
             logger.warning("Bot run was cancelled")
         except Exception as e:
-            logger.error(f"Error running bot: {e}")
+            logger.error(f"Error running bot: {e}", exc_info=True)
+            # Try to notify admin about the error
+            try:
+                await self.notify_admin(f"❌ Bot encountered an error: {str(e)[:200]}")
+            except:
+                pass
         finally:
             await self.shutdown()
 
